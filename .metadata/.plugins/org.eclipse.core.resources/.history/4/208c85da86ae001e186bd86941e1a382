@@ -1,0 +1,20 @@
+package com.boardproject.dto;
+
+import org.apache.ibatis.type.Alias;
+
+@Alias("comment")
+public class CommentDTO {
+	private int cno;
+	private String content;
+	private String cdate;
+	private int bno;
+	private String writer;
+	private String nick;
+	
+	public CommentDTO() {}
+
+
+
+	
+	
+}

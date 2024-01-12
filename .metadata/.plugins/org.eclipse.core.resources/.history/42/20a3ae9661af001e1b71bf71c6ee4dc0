@@ -1,0 +1,18 @@
+server.port=9999
+
+spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@//localhost:1521/xe
+spring.datasource.username=kiel
+spring.datasource.password=7587
+spring.datasource.connection-test-query= select 1
+
+mybatis.mapper-locations=mapper/**/*.xml
+mybatis.type-aliases-package=com.boardproject.dto
+
+spring.devtools.livereload.enabled=true
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+spring.thymeleaf.caches=false
+spring.thymeleaf.check-template-location=true
+spring.servlet.multipart.max-file-size=3GB
+spring.servlet.multipart.max-request-size.=3GB

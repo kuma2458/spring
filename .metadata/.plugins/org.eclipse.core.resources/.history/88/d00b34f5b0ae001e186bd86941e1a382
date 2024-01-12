@@ -1,0 +1,30 @@
+package com.boardproject.service;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.boardproject.dto.CommentDTO;
+import com.boardproject.mapper.CommentMapper;
+
+@Service
+public class CommentService {
+	private CommentMapper mapper;
+
+	public CommentService(CommentMapper mapper) {
+		this.mapper = mapper;
+	}
+
+
+	public int registercomment(CommentDTO comment) {
+		return mapper.registercomment(comment);
+	}
+
+
+	public List<CommentDTO> getcomment(int bno) {
+		return mapper.getcomment(bno);
+	}
+	
+	
+}

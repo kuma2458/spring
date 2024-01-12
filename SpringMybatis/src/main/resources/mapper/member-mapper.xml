@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.MemberMapper">
+	<resultMap type="member" id="member">
+		<!-- column="조회된 결과의 컬럼명" property="클래스의 필드명" -->
+		<id column="m_id" property="memberId"/>
+		<result column="m_passwd" property="memberPasswd"/>
+		<result column="m_name" property="memberName"/>
+		<result column="m_age" property="memberAge"/>
+		<result column="m_gender" property="memberGender"/>
+		<result column="grade_no" property="gradeNo"/>
+	</resultMap>
+	
+	<select id="selectAllMember" resultMap="member">
+		select * from member
+	</select>
+	
+	<select id="login" parameterType="hashmap" resultMap="member">
+		select * from member
+		where m_id like #{id} and m_passwd like #{passwd}
+	</select>
+	
+	<insert id="insertMember" parameterType="member">
+		insert into member values(#{memberId},#{memberPasswd},#{memberName},
+		#{memberAge},#{memberGender},#{gradeNo})
+	</insert>
+	
+	<!-- 파라미터가 하나면 사용할때 어떤 이름을 써도 상관 없음  -->
+	<delete id="deleteMember" parameterType="int">
+		<![CDATA[
+			delete from member where m_age < #{value}
+		]]>
+	</delete>
+	
+	<update id="updateAge">
+		update member set m_age = m_age + 5 where grade_no in
+		<foreach collection="array" open="(" close=")" separator=","  item="n">
+			#{n}
+		</foreach>
+	</update>
+	
+	<select id="searchMember" parameterType="hashmap" resultMap="member">
+		select * from member where
+		<choose>
+			<when test="kind == 'name'">
+				m_name like #{search} || '%'
+			</when>
+			<when test="kind == 'age'">
+				m_age between #{search} and #{search} + 9
+			</when>
+			<otherwise>
+				m_gender = #{search}
+			</otherwise>
+		</choose>
+	</select>
+</mapper>

@@ -1,0 +1,19 @@
+<!-- 
+	로그인 세션이 풀려있으면 index.jsp로 이동
+ -->
+<script th:if="${session.login==null || session.login==false}">
+	alert('로그인 정보가 없습니다');
+	location.href='/';
+</script>	
+	
+	
+<!-- 메뉴 영역 -->
+	<nav>
+ 		<ul>
+ 			<li><a href="/main">홈</a></li>
+ 			<li><a href="/student/insert/view">학생정보 등록</a></li>
+ 			<li><a href="/major">학과 관리</a></li>
+ 			<li><a href="scholarshipMain.do">장학생 관리</a></li>
+ 			<li><a href="/login">로그아웃</a></li>
+ 		</ul>
+ 	</nav>

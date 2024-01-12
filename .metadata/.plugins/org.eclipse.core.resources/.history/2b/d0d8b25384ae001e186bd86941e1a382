@@ -1,0 +1,57 @@
+package com.boardproject.dto;
+
+import org.apache.ibatis.type.Alias;
+
+@Alias("comment")
+public class CommentDTO {
+	private int commentNo;
+	private String content;
+	private String commentDate;
+	private int bno;
+	private String writer;
+	public CommentDTO(int commentNo, String content, String commentDate, int bno, String writer) {
+		super();
+		this.commentNo = commentNo;
+		this.content = content;
+		this.commentDate = commentDate;
+		this.bno = bno;
+		this.writer = writer;
+	}
+	public int getCommentNo() {
+		return commentNo;
+	}
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getCommentDate() {
+		return commentDate;
+	}
+	public void setCommentDate(String commentDate) {
+		this.commentDate = commentDate;
+	}
+	public int getBno() {
+		return bno;
+	}
+	public void setBno(int bno) {
+		this.bno = bno;
+	}
+	public String getWriter() {
+		return writer;
+	}
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+	@Override
+	public String toString() {
+		return "CommentDTO [commentNo=" + commentNo + ", content=" + content + ", commentDate=" + commentDate + ", bno="
+				+ bno + ", writer=" + writer + "]";
+	}
+	
+	
+}

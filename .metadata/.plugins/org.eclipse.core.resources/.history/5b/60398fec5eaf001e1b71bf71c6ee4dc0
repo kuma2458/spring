@@ -1,0 +1,30 @@
+package com.boardproject.mapper;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.boardproject.dto.BoardDTO;
+
+@Mapper
+public interface BoardMapper {
+
+	public List<BoardDTO> selectAllboard(HashMap<String, Object> map);
+
+	public int selectboardcount();
+
+	public BoardDTO selectboardcontent(int bno);
+
+	public int boardlikeup(HashMap<String, Object> map);
+
+	public int boardtotallike(int bno);
+	public int boardlikedown(HashMap<String, Object> map);
+
+	public int boardhateup(HashMap<String, Object> map);
+
+	public int boardhatedown(HashMap<String, Object> map);
+
+	public int boardtotalhate(int bno);
+
+}

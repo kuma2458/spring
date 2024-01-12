@@ -1,0 +1,16 @@
+package com.boardproject.service;
+
+import org.springframework.stereotype.Service;
+
+import com.boardproject.mapper.CommentMapper;
+
+@Service
+public class CommentService {
+	private CommentMapper mapper;
+
+	public CommentService(CommentMapper mapper) {
+		this.mapper = mapper;
+	}
+	
+	
+}

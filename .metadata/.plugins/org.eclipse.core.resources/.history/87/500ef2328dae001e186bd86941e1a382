@@ -1,0 +1,14 @@
+package com.boardproject.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.boardproject.dto.CommentDTO;
+
+@Mapper
+public interface CommentMapper {
+
+	public int registercomment(CommentDTO comment);
+
+	public CommentDTO getcomment(int bno);
+
+}

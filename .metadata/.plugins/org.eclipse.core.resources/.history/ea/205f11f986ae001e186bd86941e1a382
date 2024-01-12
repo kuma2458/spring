@@ -1,0 +1,29 @@
+package com.boardproject.service;
+
+import java.util.HashMap;
+
+import org.springframework.stereotype.Service;
+
+import com.boardproject.mapper.CommentMapper;
+
+@Service
+public class CommentService {
+	private CommentMapper mapper;
+
+	public CommentService(CommentMapper mapper) {
+		this.mapper = mapper;
+	}
+
+	public int registercomment(int bno, String content, String writer) {
+		HashMap<String, Object> map =new HashMap<String,Object>();
+		map.put("bno", bno);
+		map.put("content", bno);
+		map.put("writer", bno);
+		
+
+		
+		return 0;
+	}
+	
+	
+}

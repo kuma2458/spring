@@ -1,0 +1,21 @@
+package com.boardproject.dto;
+
+import org.apache.ibatis.type.Alias;
+
+@Alias("board")
+public class BoardDTO {
+	private int bno;
+	private String title;
+	private String writer;
+	private String nick;
+	private String date;
+	private	int bcount;
+	private String bcontent;
+	
+	public BoardDTO() {
+		
+	}
+	
+
+	
+}

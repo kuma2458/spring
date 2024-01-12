@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인 페이지</title>
+<style>
+	nav {
+		width:1200px;
+		margin:0 auto;/* 가운데 정렬  */
+		border:1px solid black;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	ul{
+		list-style-type: none;
+		height: auto;
+		display: inline-block;
+	}
+	li{
+		display: inline-block;
+	}
+	#menu_bar a:link,#menu_bar a:visited {
+		color:black;
+		text-decoration: none;
+		font-size: 17px;
+		text-align: center;
+		padding: 20px 30px;
+	}
+	#login{
+		padding:5px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+	#login img{
+		width: 32px;
+		margin-right: 10px;
+	}
+	#container{
+		/* background-color: lime; */
+	}
+	.board{
+		margin:20px auto;
+		border-collapse: collapse;
+	}
+	.board th, .board td{
+		padding: 10px;
+		text-align: center;
+	}
+	.board th{
+		border-top : 2px solid black;
+		border-bottom : 2px solid black;
+	}
+	.board td{
+		border-top : 1px solid black;
+		border-bottom : 1px solid black;
+	}
+	.board tr:last-child > td {
+		border-bottom : 2px solid black;
+	}
+	.title{
+		width:500px;	
+	}
+	.writer{
+		width:150px;	
+	}
+	.date{
+		width:200px;
+	}
+	a{
+		text-decoration: none;
+		coler:black;
+	}
+</style>
+</head>
+<body>
+<nav id="menu_bar">
+	<ul>
+		<li><a href="/main">HOME</a></li>
+		<li><a href="logout">로그아웃</a></li>
+		<th:block th:if="${session.member.gradeNo == 6 }">
+			<li><a href="/admin/member">전체 회원 관리</a></li>
+			<li><a href="/admin/qna">회원문의내역</a></li>
+		</th:block>		
+		<th:block th:if="${session.member.gradeNo < 6 }">
+		<li><a href="/qna">문의하기</a></li>
+		<li><a href="/member/update">회원정보수정</a></li>
+		</th:block>
+	</ul>
+	<div id="login">
+	    	<th:block th:switch="${session.member.gradeNo}">
+	    		<img src="/img/bronze.png" th:case="1">
+	    		<img src="/img/silver.png" th:case="2">
+	    		<img src="/img/gold.png" th:case="3">
+	    		<img src="/img/vip.png" th:case="4">
+	    		<img src="/img/vvip.png" th:case="5">
+	    		<img src="/img/master.png" th:case="6">
+	    	</th:block>
+	           [[${session.member.nick}]] 님이 로그인 하셨습니다.
+		
+	</div>
+</nav>		
+
+	<hr>
+	<!--전체 게시글 목록 출력(글번호, 제목[댓글 개수], 작성자 이름(닉네임), 조회수, 좋아요, 싫어요 -->
+	<table class="board">
+	<thead>
+		<tr>
+			<th>글번호</td>
+			<th class='title'>제목</th>	
+			<th class='writer'>작성자</th>	
+			<th class='date'>작성일</th>
+			<th>조회수</td>
+			<th>좋아요</td>
+			<th>싫어요</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="board:${list}">
+			<td>[[${board.bno}]]</td>
+			<td>[[${board.title}]]</td>
+			<td>[[${board.nick}]]</td>
+			<td>[[${board.date}]]</td>
+			<td>[[${board.bcount}]]</td>
+			<td>[[${board.blike}]]</td>
+			<td>[[${board.bhate}]]</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+		<!-- 이전 페이지 그룹으로 이동 - 이전 페이지 그룹이 있을때만
+			◀ 를 클릭시 이전 그룹의 마지막 페이지로 이동 -->
+		<!-- 페이지 번호 출력 -->
+			<td colspan="7">
+					<a th:if="${pagging.priviousPageGroup}"
+					th:href="@{/main(pageNo=${pagging.startPageOfPageGroup-1})}">◀</a>
+				<th:block th:each="i : ${#numbers.sequence(pagging.startPageOfPageGroup, pagging.endPageOfPageGroup)}">
+				    <a th:href="@{/main(pageNo=${i})}">[[${i}]]</a>
+				</th:block>
+					<a th:if="${pagging.nextPageGroup}"
+					th:href="@{/main(pageNo=${pagging.endPageOfPageGroup+1})}">▶</a>
+			</td>
+		</tr>
+	</tfoot>
+	</table>
+	
+	
+	
+</body>
+</html>

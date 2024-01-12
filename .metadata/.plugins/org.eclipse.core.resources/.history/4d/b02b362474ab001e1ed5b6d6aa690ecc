@@ -1,0 +1,5 @@
+package com.boardproject.dto;
+
+public class MemberDTO {
+
+}

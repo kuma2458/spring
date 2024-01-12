@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boardproject.mapper.MemberMapper">
+	<resultMap type="member" id="member">
+		<id column="ID" property="id" />
+		<result column="PASSWD" property="passwd" />
+		<result column="NAME" property="name" />
+		<result column="NICK" property="nick" />
+		<result column="GRADE_NO" property="gradeNo" />
+		<result column="GRADE_Name" property="gradeName" />
+	</resultMap>
+	
+	<select id="login" parameterType="hashmap" resultMap="member" ></select>
+	SELECT bm.*,g.GRADE_NAME FROM BOARD_MEMBER bm JOIN grade g ON bm.GRADE_NO =g.GRADE_NO 
+	WHERE id LIKE #{id} AND PASSWD like #{passwd}	
+</mapper>
+
+
+
+
+
+

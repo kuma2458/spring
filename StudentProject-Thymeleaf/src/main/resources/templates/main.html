@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table {
+		border-collapse: collapse;
+		margin: 30px auto;
+	}
+	
+	td, th {
+		padding: 10px;
+		font-size: 1.3em;
+		border: 1px solid black;
+		text-align: center;
+	}
+
+</style>
+
+
+</head>
+<body>
+	<th:block th:include="/fragments/header"></th:block>
+	<table>
+		<thead>
+			<tr>
+				<th>학번</th>
+				<th>이름</th>
+				<th>평점</th>
+				<th>성별</th>
+				<th>학과명</th>
+				<th>비고</th>
+			</tr>
+		</thead>
+		<tbody>
+			 <!-- 세션에 저장한 studentList를 출력 -->
+			 	<tr th:each="std : ${studentList}">
+			 		<td>[(${std.studentNo})]</td>
+			 		<td>[[${std.studentName}]]</td>
+			 		<td>[[${std.score}]]</td>
+			 		<td th:text="${std.gender}"></td>
+			 		<td>
+			 		<!-- 학과번호를 이용해서 해당 학과명을 출력 -->
+			 		<th:block th:each="m:${majorList}">
+			 		
+			 			<th:block th:if="${std.majorNo==m.majorNo}">
+			 				[[${m.majorName}]]
+			 		</th:block>
+			 		</th:block>
+			 		</td>
+			 		<td>
+			 			<a th:href='@{/student/update/{stdNo}(stdNo=${std.studentNo })}'>수정</a>
+			 			/
+			 			<a th:href='@{/student/delete/{stdNo}(stdNo=${std.studentNo })}'>삭제</a>
+			 			
+			 		</td>
+			 	</tr>
+			 </c:forEach>
+		</tbody>
+	</table>
+</body>
+</html>
+
+
+
+
+

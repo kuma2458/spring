@@ -1,0 +1,12 @@
+package com.boardproject.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.boardproject.dto.MemberDTO;
+
+@Mapper
+public interface MemberMapper {
+
+	MemberDTO login(String id, String password);
+
+}

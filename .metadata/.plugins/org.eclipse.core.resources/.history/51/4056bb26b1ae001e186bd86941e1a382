@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boardproject.mapper.CommentMapper">
+	<resultMap type="comment" id="comment">
+		<id column="CNO" property="cno" />
+		<result column="WRITER" property="writer" />
+		<result column="NICK" property="nick" />
+		<result column="BDATE" property="cdate" />
+		<result column="CONTENT" property="content" />
+		<result column="CLIKE" property="clike" />
+		<result column="CHATE" property="chate" />
+		<result column="BNO" property="bno"/>
+	</resultMap>
+	
+	<insert id="registercomment" parameterType="comment">
+		insert into board_comment(cno,bno,writer,content)
+		values(board_comment_cno.nextval,#{bno},#{writer},#{content})
+	</insert>
+	
+	<select id="getcomment" resultMap="comment" parameterType="int">
+		SELECT bc.CNO ,bc.CONTENT ,bc.CDATE,bc.WRITER, bc.BNO , bm.NICK ,
+		(SELECT count(*) FROM BOARD_COMMENT_LIKE bcl WHERE bc.CNO=cno) AS clike,
+		(SELECT count(*) FROM BOARD_COMMENT_HATE bch WHERE bc.CNO=cno) AS chate
+		FROM BOARD_COMMENT bc JOIN BOARD_MEMBER bm ON bc.WRITER =bm.ID 
+		WHERE bc.BNO = #{bno}
+	</select>
+	
+	<insert id="commentlikeup" parameterType="hashmap">
+		INSERT INTO BOARD_COMMENT_LIKE(CNO,ID) values(#{cno},#{id})
+	</insert>
+</mapper>
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+package batch;
+
+import org.quartz.Job;
+
+public class SelectStudentLowScore implements Job {
+
+}

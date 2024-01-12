@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boardproject.mapper.BoardMapper">
+	<resultMap type="board" id="board">
+		<id column="BNO" property="bno" />
+		<result column="TITLE" property="title" />
+		<result column="WRITER" property="writer" />
+		<result column="NICK" property="nick" />
+		<result column="BDATE" property="date" />
+		<result column="BCOUNT" property="bcount" />
+		<result column="CONTENT" property="content" />
+		<result column="BLIKE" property="blike" />
+		<result column="BHATE" property="bhate" />
+	</resultMap>
+	
+	<select id="selectAllboard" resultMap="board" parameterType="hashmap">
+		SELECT * from
+		(SELECT CEIL(rownum / #{contentCount}) AS page_no, b.* FROM
+		(select b.bno,b.bcount,b.bdate,b.title,b.writer,bm.nick,
+		(SELECT count(*) FROM BOARD_LIKE bl WHERE b.bno = bl.bno) AS blike,
+		(SELECT count(*) FROM BOARD_HATE bh WHERE b.bno = bh.bno) AS bhate,
+		(SELECT count(*) FROM BOARD_COMMENT bc WHERE b.bno = bc.bno) AS ccount
+		from
+		board b join board_member bm on b.writer = bm.id
+		ORDER BY b.BNO DESC) b)
+		WHERE page_no = #{pageNo
+	</select>
+	
+	<select id="selectboardcount">
+		SELECT count(*) FROM board
+	</select>
+</mapper>
+
+
+
+
+
+

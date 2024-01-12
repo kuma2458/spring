@@ -1,0 +1,39 @@
+<!-- 
+	로그인 세션이 풀려있으면 index.html로 이동
+ -->
+ <script th:if="${session.login == null || session.login == false}">
+	alert('로그인 정보가 없습니다.');
+	location.href='/';
+</script>
+
+<!-- 메뉴 영역 -->
+<nav>
+    <ul>
+        <li><a href="/main">홈</a></li>
+        <li><a href="/student/insert/view">학생정보 등록</a></li>
+        <li><a href="/major">학과 관리</a></li>
+        <li><a href="">장학생 관리</a></li>
+        <li><a href="/logout">로그아웃</a></li>
+    </ul>
+</nav>
+
+<style>
+    nav ul{
+		widows: 1200px;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-around;
+		list-style-type: none;
+	}
+	nav a:visited, nav a:link {
+ 		text-decoration: none;
+ 		color : black;
+ 		font-size: 24px;
+ 		display: inline-block;
+ 		padding:10px 0px;
+	}
+	nav a:hover{
+		border-bottom: 2px solid black ;
+		font-weight: bold;
+	}
+</style>

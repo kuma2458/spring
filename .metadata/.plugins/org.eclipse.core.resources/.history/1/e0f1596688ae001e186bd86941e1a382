@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boardproject.mapper.CommentMapper">
+	<resultMap type="comment" id="comment">
+		<id column="CNO" property="cno" />
+		<result column="TITLE" property="title" />
+		<result column="WRITER" property="writer" />
+		<result column="NICK" property="nick" />
+		<result column="BDATE" property="date" />
+		<result column="BCOUNT" property="bcount" />
+		<result column="CONTENT" property="content" />
+		<result column="BLIKE" property="blike" />
+		<result column="BHATE" property="bhate" />
+	</resultMap>
+	
+</mapper>
+
+
+
+
+
+

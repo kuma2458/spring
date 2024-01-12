@@ -1,0 +1,8 @@
+server.port=9999
+
+spring.datasource.driver=oracle.jdbc.driver.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@//localhost/1521
+spring.datasource.username=kiel
+spring.datasource.password=7587
+
+mybatis.mapper-locations=/mapper/**/*.html

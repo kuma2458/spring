@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글쓰기</title>
+</head>
+<style>
+*{
+	margin:0;
+	padding:0;
+}
+.container{
+	width:600px;
+	margin:0 auto;
+}
+form{
+	width:100%;
+	display: flex;
+	flex-flow: column nowrap;
+	box-sizing: border-box;
+	
+}
+#title, #content{
+	width:540px;
+	height: 32px;
+}
+label{
+	width:60px;
+}
+
+.fileupload{
+	display: flex;
+	flex-flow: column nowrap;
+	width:600px;
+}
+
+</style>
+<body>
+	<div class="container">
+		<h2>글쓰기 페이지</h2>
+		<form action="" method="post">
+			<label for="title">제목</label><input type="text" placeholder="제목" id="title">
+			<label for="content">내용</label><input type="textarea" placeholder="내용을 입력하세요" id="content">
+				<div class="fileupload">
+					<button id="test">파일선택</button><label for="test">ㅇㅇ</label>
+					<button id="test">파일선택</button><label for="test">ㅇㅇ</label>
+					<button id="test">파일선택</button><label for="test">ㅇㅇ</label>
+				</div>
+			<button class="listview" location="">목록보기</button>
+			<button class="back">뒤로가기</button>
+			<button>글쓰기</button>
+		</form>
+	</div>
+
+</body>
+</html>

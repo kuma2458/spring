@@ -1,0 +1,98 @@
+package com.boardproject.service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.boardproject.dto.BoardDTO;
+import com.boardproject.dto.FileDTO;
+import com.boardproject.mapper.BoardMapper;
+
+@Service
+public class BoardService {
+
+	private BoardMapper mapper;
+
+	public BoardService(BoardMapper mapper) {
+		this.mapper = mapper;
+	}
+
+
+	public int selectboardcount() {
+		return mapper.selectboardcount();
+	}
+
+	public List<BoardDTO> selectAllboard(int pageNo, int contentCount) {
+		HashMap<String, Object> map =new HashMap<String, Object>();
+		map.put("pageNo", pageNo);
+		map.put("contentCount", contentCount);
+		return mapper.selectAllboard(map);
+	}
+
+
+	public BoardDTO selectboardcontent(int bno) {
+		return mapper.selectboardcontent(bno);
+	}
+
+
+	public int boardtotallike(int bno) {
+		return mapper.boardtotallike(bno);
+	}
+
+
+	public int boardlikeup(String id, int bno) {
+		HashMap<String, Object> map =new HashMap<String,Object>();
+		map.put("id", id);
+		map.put("bno", bno);
+		return mapper.boardlikeup(map);		
+	}
+
+
+	public int boardlikedown(String id, int bno) {
+		HashMap<String, Object> map =new HashMap<String,Object>();
+		map.put("id", id);
+		map.put("bno", bno);
+		return mapper.boardlikedown(map); 
+	}
+
+
+	public int boardhateup(String id, int bno) {
+		HashMap<String, Object> map =new HashMap<String,Object>();
+		map.put("id", id);
+		map.put("bno", bno);
+		return mapper.boardhateup(map);	
+	}
+
+
+	public int boardhatedown(String id, int bno) {
+		HashMap<String, Object> map =new HashMap<String,Object>();
+		map.put("id", id);
+		map.put("bno", bno);
+		return mapper.boardhatedown(map);	
+	}
+
+
+	public int boardtotalhate(int bno) {
+		return mapper.boardtotalhate(bno);
+	}
+
+
+	public int selectBoardNo() {
+		return mapper.selectBoardNo();
+	}
+
+
+	public int insertBoard(BoardDTO board) {
+		return mapper.insertBoard(board);
+	}
+
+
+	public void insertFile(ArrayList<FileDTO> list) {
+		list.forEach(e->mapper.insertFile(e));
+	}
+	
+	
+	
+}

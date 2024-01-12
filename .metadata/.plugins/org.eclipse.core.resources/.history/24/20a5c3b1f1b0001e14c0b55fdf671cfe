@@ -1,0 +1,28 @@
+package batch;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+
+public class SelectStudentLowScore implements Job {
+
+	@Override
+	public void execute(JobExecutionContext context) throws JobExecutionException {
+		try {
+			URL url=new URL("https://localhost:9999/student/low-score-list");
+			HttpURLConnection conn=(HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			
+			
+		}
+		catch (IOException e) {
+			// TODO: handle exception
+		}
+	}
+
+}

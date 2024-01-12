@@ -1,0 +1,29 @@
+package com.boardproject.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.boardproject.dto.BoardDTO;
+import com.boardproject.mapper.BoardMapper;
+
+@Service
+public class BoardService {
+
+	private BoardMapper mapper;
+
+	public BoardService(BoardMapper mapper) {
+		this.mapper = mapper;
+	}
+
+	public List<BoardDTO> selectAllboard() {
+		return mapper.selectAllboard();
+	}
+
+	public int selectboardcount() {
+		return mapper.selectboardcount();
+	}
+	
+	
+	
+}

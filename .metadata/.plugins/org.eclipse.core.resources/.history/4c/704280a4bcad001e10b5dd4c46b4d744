@@ -1,0 +1,5 @@
+package com.boardproject.vo;
+
+public class PaggingVO {
+
+}

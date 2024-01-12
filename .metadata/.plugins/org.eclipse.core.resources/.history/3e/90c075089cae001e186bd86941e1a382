@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boardproject.mapper.BoardMapper">
+	<resultMap type="board" id="board">
+		<id column="BNO" property="bno" />
+		<result column="TITLE" property="title" />
+		<result column="WRITER" property="writer" />
+		<result column="NICK" property="nick" />
+		<result column="BDATE" property="date" />
+		<result column="BCOUNT" property="bcount" />
+		<result column="CONTENT" property="content" />
+		<result column="BLIKE" property="blike" />
+		<result column="BHATE" property="bhate" />
+	</resultMap>
+	
+	<select id="selectAllboard" resultMap="board" parameterType="hashmap">
+		select * from
+		(select ceil(rownum/#{contentCount}) as page_no, bb.* from(SELECT b.BNO ,b.TITLE ,b.WRITER,bm.NICK ,b.BDATE,b.BCOUNT,NVL(blike,0) AS blike,NVL(bhate,0) AS bhate
+		from board b JOIN board_MEMBER bm ON b.WRITER =bm.ID 
+		left OUTER JOIN (SELECT bl.BNO AS blbno , count(*) AS blike FROM BOARD_LIKE bl  GROUP BY bl.bno) 
+		on blbno=b.bno
+		left OUTER JOIN (SELECT bh.BNO AS bhbno , count(*) AS bhate FROM BOARD_HATE bh  GROUP BY bh.bno) 
+		on bhbno=b.bno
+		order by b.bno desc) bb)
+		where page_no = #{pageNo}
+	</select>
+	
+	<select id="selectboardcount">
+		SELECT count(*) FROM board
+	</select>
+	
+	<select id="selectboardcontent" resultMap="board" parameterType="int">
+	SELECT b.BNO ,b.TITLE,b.WRITER, b.content,NVL(bcomment,0)AS bcomment,bm.NICK ,b.BDATE, b.BCOUNT,NVL(blike,0) AS blike,NVL(bhate,0) AS bhate
+	from board b JOIN board_MEMBER bm ON b.WRITER =bm.ID 
+	left OUTER JOIN (SELECT bl.BNO AS blbno , count(*) AS blike FROM BOARD_LIKE bl  GROUP BY bl.bno) 
+	on blbno=b.bno
+	left OUTER JOIN (SELECT bh.BNO AS bhbno , count(*) AS bhate FROM BOARD_HATE bh  GROUP BY bh.bno) 
+	on bhbno=b.bno
+	left OUTER JOIN (SELECT bc.BNO AS bcbno , count(*) AS bcomment FROM BOARD_COMMENT bc  GROUP BY bc.bno) 
+	on bcbno=b.bno
+	WHERE b.BNO = #{bno}
+	</select>
+	
+	<insert id="boardlikeup" parameterType="hashmap">
+		INSERT INTO BOARD_LIKE(BNO,ID) values(#{bno},#{id})
+	</insert>
+	
+	<select id="boardtotallike" resultMap="board" parameterType="int">
+		SELECT count(*) FROM BOARD_LIKE bl WHERE bl.BNO =#{bno}
+	</select>
+</mapper>
+
+
+
+
+
+

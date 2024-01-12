@@ -1,0 +1,67 @@
+package com.boardproject.dto;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public class BoardMapper {
+	private int boardNo;
+	private String boardTitle;
+	private String boardWriter;
+	private String boardDate;
+	private	int boardCount;
+	private String boardContent;
+	public BoardMapper(int boardNo, String boardTitle, String boardWriter, String boardDate, int boardCount,
+			String boardContent) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardWriter = boardWriter;
+		this.boardDate = boardDate;
+		this.boardCount = boardCount;
+		this.boardContent = boardContent;
+	}
+	public int getBoardNo() {
+		return boardNo;
+	}
+	public void setBoardNo(int boardNo) {
+		this.boardNo = boardNo;
+	}
+	public String getBoardTitle() {
+		return boardTitle;
+	}
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
+	}
+	public String getBoardWriter() {
+		return boardWriter;
+	}
+	public void setBoardWriter(String boardWriter) {
+		this.boardWriter = boardWriter;
+	}
+	public String getBoardDate() {
+		return boardDate;
+	}
+	public void setBoardDate(String boardDate) {
+		this.boardDate = boardDate;
+	}
+	public int getBoardCount() {
+		return boardCount;
+	}
+	public void setBoardCount(int boardCount) {
+		this.boardCount = boardCount;
+	}
+	public String getBoardContent() {
+		return boardContent;
+	}
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
+	}
+	@Override
+	public String toString() {
+		return "BoardMapper [boardNo=" + boardNo + ", boardTitle=" + boardTitle + ", boardWriter=" + boardWriter
+				+ ", boardDate=" + boardDate + ", boardCount=" + boardCount + ", boardContent=" + boardContent + "]";
+	}
+	
+	
+	
+}

@@ -1,0 +1,15 @@
+server.port=9999
+
+spring.datasource.driver=oracle.jdbc.driver.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@//localhost/1521
+spring.datasource.username=kiel
+spring.datasource.password=7587
+
+mybatis.mapper-locations=/mapper/**/*.html
+mybatis.type-aliases-package=com.boardproject.dto
+
+spring.devtools.livereload.enabled=true
+spring.thymeleaf.prefix=classpath:/templates/
+spring.thymeleaf.suffix=.html
+spring.thymeleaf.caches=false
+spring.thymeleaf.check-template-location=true

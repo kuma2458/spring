@@ -1,0 +1,5 @@
+package com.boardproject.service;
+
+public class MemberService {
+
+}

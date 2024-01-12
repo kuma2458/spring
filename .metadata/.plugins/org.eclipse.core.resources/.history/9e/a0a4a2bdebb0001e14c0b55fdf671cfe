@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.mapper.StudentMapper">
+	<resultMap type="student" id="student">
+		<id column="STD_NO" property="studentNo" />
+		<result column="STD_NAME" property="studentName" />
+		<result column="STD_SCORE" property="score" />
+		<result column="GENDER" property="gender" />
+		<result column="MAJOR_NO" property="majorNo" />
+	</resultMap>
+
+	<select id="selectAllStudent" resultMap="student">
+		select * from student
+	</select>
+
+	<insert id="insertStudent" parameterType="student">
+		insert into student
+		values(#{studentNo},#{studentName},#{score},#{gender},#{majorNo})
+	</insert>
+
+	<update id="updateStudent" parameterType="student">
+		update student set
+		std_name = #{studentName}, std_score = #{score},
+		gender = #{gender},
+		major_no = #{majorNo}
+		where std_no like #{studentNo}
+	</update>
+
+	<delete id="deleteStudent" parameterType="string">
+		delete from student
+		where std_no like #{studentNo}
+	</delete>
+
+	<select id="selectStudent" parameterType="string"
+		resultMap="student">
+		select * from student where std_no like #{studentNo}
+	</select>
+	
+	<select id="selectavgscorestudent" resultMap="student">
+		SELECT * FROM STUDENT WHERE <![CDATA[ STD_SCORE < (SELECT AVG(STD_SCORE) FROM STUDENT) ]]> 
+	</select>
+</mapper>
+
+
+
+
+
+

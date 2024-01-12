@@ -1,0 +1,19 @@
+import org.quartz.Job;
+import org.quartz.Scheduler;
+
+public class TestCronTrigger {
+	//크론식 -원하는 주기를 설정하는 문자열
+	private String timer;
+	//실제 작업을 할 클래스 -> Job을 상속 받는 클래스
+	private Class<? extends Job> job;
+	//Job을 등록할 스케줄러
+	private Scheduler scheduler;
+	
+	public TestCronTrigger(String timer, Class<? extends Job> job) {
+		super();
+		this.timer = timer;
+		this.job = job;
+	}
+	
+	
+}
